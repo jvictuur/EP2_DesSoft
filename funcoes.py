@@ -47,13 +47,17 @@ def afundados(frota, tabuleiro):
         for posicoes in lista_posicoes:
             afundado = True
             for linha, coluna in posicoes:
+                if linha < 0 or linha >= len(tabuleiro) or coluna < 0 or coluna >= len(tabuleiro[0]):
+                    afundado = False
+                    break
                 if tabuleiro[linha][coluna] != 'X':
                     afundado = False
-                    break  
+                    break
+            
             if afundado:
                 navios_afundados += 1
-                break
-
+    
     return navios_afundados
+            
 
 
