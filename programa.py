@@ -82,9 +82,20 @@ while jogando:
             break
         print("Coluna inválida!")
 
-    if (linha, coluna) in posicoes_atacadas:
+    while (linha, coluna) in posicoes_atacadas:
         print(f'A posição linha {linha} e coluna {coluna} já foi informada anteriormente!')
-        continue
+        
+        while True:
+            linha = int(input("Jogador, qual linha deseja atacar? "))
+            if 0 <= linha <= 9:
+                break
+            print("Linha inválida!")
+
+        while True:
+            coluna = int(input("Jogador, qual coluna deseja atacar? "))
+            if 0 <= coluna <= 9:
+                break
+            print("Coluna inválida!")
 
     posicoes_atacadas.append((linha, coluna))
 
