@@ -23,10 +23,10 @@ def preenche_frota(frota, nome_navio, linha, coluna, orientacao, tamanho):
 def faz_jogada(tabuleiro, linha, coluna):
     if tabuleiro[linha][coluna] == 1:
         tabuleiro[linha][coluna] = 'X' 
+        return True
     else:
-        tabuleiro[linha][coluna] = '-' 
-
-    return tabuleiro
+        tabuleiro[linha][coluna] = '-'
+        return False
 
 def posiciona_frota(frota):
     tamanho_tabuleiro = 10

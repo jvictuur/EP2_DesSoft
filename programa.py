@@ -1,4 +1,7 @@
 from funcoes import *
+import random
+random.seed(1)
+random.seed(2)
 
 frota = {
     "porta-aviões": [],
@@ -66,6 +69,7 @@ tabuleiro_jogador = posiciona_frota(frota)
 
 jogando = True
 posicoes_atacadas = []
+posicoes_oponente_atacadas = []
 
 while jogando:
     print(monta_tabuleiros(tabuleiro_jogador, tabuleiro_oponente))
@@ -98,9 +102,27 @@ while jogando:
             print("Coluna inválida!")
 
     posicoes_atacadas.append((linha, coluna))
-
     faz_jogada(tabuleiro_oponente, linha, coluna)
 
     if afundados(frota_oponente, tabuleiro_oponente) == len(frota_oponente):
         print("Parabéns! Você derrubou todos os navios do seu oponente!")
         jogando = False
+        continue
+
+    while True:
+        linha_oponente = random.randint(0, 9)
+        coluna_oponente = random.randint(0, 9)
+        if (linha_oponente, coluna_oponente) not in posicoes_oponente_atacadas:
+            break
+
+    posicoes_oponente_atacadas.append((linha_oponente, coluna_oponente))
+    print(f'Seu oponente está atacando na linha {linha_oponente} e coluna {coluna_oponente}')
+    faz_jogada(tabuleiro_jogador, linha_oponente, coluna_oponente)
+
+    if afundados(frota, tabuleiro_jogador) == len(frota):
+        print("Xi! O oponente derrubou toda a sua frota =(")
+        jogando = False
+
+
+
+    
